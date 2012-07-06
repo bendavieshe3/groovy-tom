@@ -1,13 +1,14 @@
 package com.he3.tom.samples.groovysite.tests
 
-import org.junit.Rule
+import org.junit.After
 import org.junit.Test
+import org.junit.Before
 
-import com.he3.tom.Clauses
+import com.he3.tom.*
 
 //import com.he3.tom.samples.groovysite.HomePage
 
-@Mixin([Clauses])
+@Mixin([Clauses,TomUnit])
 class HomeTests {
 	
 	/*
@@ -31,6 +32,16 @@ class HomeTests {
 			SignUpLinkIsVisible
 		}
     }
+	
+	@Before
+	public void setup() {
+		startTomSession()
+	}
+	
+	@After
+	public void teardown() {
+		endTomSession()
+	}
 
 	
 }
