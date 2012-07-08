@@ -33,15 +33,4 @@ class HomeTests {
 		}
     }
 	
-	@Before
-	public void setup() {
-		startTomSession()
-	}
-	
-	@After
-	public void teardown() {
-		endTomSession()
-	}
-
-	
 }

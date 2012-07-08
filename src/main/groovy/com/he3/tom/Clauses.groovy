@@ -7,7 +7,7 @@ class Clauses {
 	Stage testStage = new Stage()
 	
 	def given(Closure preConditions) {
-		
+		runWithDelegate({ startTomSession()}, testStage)
 		runWithDelegate(preConditions, testStage)
 		establishConditions()
 	}
@@ -21,6 +21,7 @@ class Clauses {
 		
 		runWithDelegate(postConditions, testStage)
 		checkPostConditions()
+		runWithDelegate({ endTomSession()}, testStage)
 	}
 	
 	def establishConditions() {
@@ -37,5 +38,9 @@ class Clauses {
 		cl()
 	}
 	
+	
+
+	
+
 	
 }
