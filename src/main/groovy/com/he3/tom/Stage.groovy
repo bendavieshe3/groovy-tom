@@ -2,14 +2,20 @@ package com.he3.tom
 
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.*
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 class Stage {
 
 	def terms = []
+	def defaultDriver = 'HtmlUnitDriver'
+	def Map driverFqns = [
+		'HtmlUnitDriver':'org.openqa.selenium.htmlunit.HtmlUnitDriver',
+		'FirefoxDriver':'org.openqa.selenium.firefox.FirefoxDriver'
+		]
 	
-	WebDriver driver
+	WebDriver session
 	
 	
 	def getProperty(String name) {
@@ -22,14 +28,19 @@ class Stage {
 	}
 	
 	
-	void startTomSession() {
+	void startTomSession(Map options = [:]) {
 		
-		driver = new FirefoxDriver();
+		options.driver = options?.driver ?: defaultDriver
+		if(driverFqns.containsKey( options.driver )) {
+			options.driver = driverFqns.(options.driver)
+		}
+		
+		session = Class.forName(options.driver).newInstance()
 		
 	}
 	
 	void endTomSession() {
-		driver.quit()
+		session.quit()
 	}
 	
 }
