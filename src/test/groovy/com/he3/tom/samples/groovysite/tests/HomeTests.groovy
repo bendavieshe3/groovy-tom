@@ -8,14 +8,9 @@ import com.he3.tom.*
 
 //import com.he3.tom.samples.groovysite.HomePage
 
-@Mixin([Clauses,TomUnit])
+@Mixin([TomUnit])
 class HomeTests {
-	
-	/*
-	@Rule
-	public WebDriverHelper webdriver = new WebDriverHelper()
-	*/
-	
+
     @Test
     public void testContentOnDirectVisit() {
 		
