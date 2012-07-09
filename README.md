@@ -46,6 +46,5 @@ performed),
 - A Test data domain for providing the required test data
 - The Test specifications in the DSL itself.
 
-
 [gradle]: http://gradle.org
 
