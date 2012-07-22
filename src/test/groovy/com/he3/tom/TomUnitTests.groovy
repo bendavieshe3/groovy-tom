@@ -11,14 +11,37 @@ class TomUnitTests {
 	def TomUnit cut
 	
     @Test
-    public void testEstablishConditions() {
-    	cut.establishConditions
+    public void testGiven() {
+    	cut.given(mathGiven)
     }
+	
+	@Test
+	public void testWhen() {
+		cut.when(mathWhen)	
+	}
+	
+	@Test
+	public void testThen() {
+		cut.then(mathThen)
+	}
 
 	
 	@Before
 	public void setup() {
 		cut = new TomUnit()
+	}
+	
+	private Closure mathGiven = {
+		valueAIs10
+		valueBIs5
+	}
+	
+	private Closure mathWhen = {
+		valueCIsCalculatedAsValueAPlusValueB
+	}
+	
+	private Closure mathThen = {
+		valueCIs15
 	}
 	
 }

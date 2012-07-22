@@ -9,27 +9,19 @@ class TomUnit {
 	def given(Closure preConditions) {
 		testStage.startTomSession()
 		runWithDelegate(preConditions, testStage)
-		establishConditions()
+		testStage.checkAndFulfillConditions()
 	}
 	
 	def when(Closure actions) {
-		
 		runWithDelegate(actions, testStage)
+		testStage.checkAndFulfillConditions()
 	}
 	
 	def then (Closure postConditions) {
 		
 		runWithDelegate(postConditions, testStage)
-		checkPostConditions()
+		testStage.checkConditions()
 		testStage.endTomSession()
-	}
-	
-	def establishConditions() {
-		
-	}
-	
-	def checkPostConditions() {
-		
 	}
 	
 	def runWithDelegate(Closure cl, Object delegate) {

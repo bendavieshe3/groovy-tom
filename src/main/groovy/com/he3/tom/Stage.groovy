@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 class Stage {
 
-	def terms = []
+	def conditions = []
 	def defaultDriver = 'HtmlUnitDriver'
 	def Map driverFqns = [
 		'HtmlUnitDriver':'org.openqa.selenium.htmlunit.HtmlUnitDriver',
@@ -19,14 +19,42 @@ class Stage {
 	
 	
 	def getProperty(String name) {
-		setTerm(name)
+		setCondition(name)
 		name
 	}
 	
-	def setTerm(String term) {
-		terms.push(term)
+	def setCondition(String conditionText) {
+		conditions.push(new Condition(conditionText))
 	}
 	
+	def checkConditions() {
+		if(getUnfulfilledConditions().size()) {
+			throw new Exception('Conditions not met')
+		}
+	}
+	
+	def establishConditions() {
+		getUnfulfilledConditions().each { condition ->
+			fulfillCondition(condition)
+		}
+	}
+	
+	def checkAndFulfillConditions() {
+		establishConditions()
+		if(getUnfulfilledConditions().size()) {
+			throw new Exception('Could not fulfill conditions')
+		}
+	}
+	
+	List getUnfulfilledConditions() {
+		return conditions.findAll { condition ->
+			condition.isFulfilled()
+		}
+	}
+	
+	void fulfillCondition(Condition condition) {
+		condition.fulfill()		
+	}
 	
 	void startTomSession(Map options = [:]) {
 		
@@ -40,7 +68,7 @@ class Stage {
 	}
 	
 	void endTomSession() {
-		session.quit()
+		session?.quit()
 	}
 	
 }

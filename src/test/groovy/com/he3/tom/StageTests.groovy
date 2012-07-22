@@ -25,6 +25,20 @@ class StageTests {
 		cut.endTomSession()
 	}
 	
+	@Test
+	public void testCheckConditions() {
+		cut.checkConditions()
+	}
+	
+	@Test
+	public void testEstablishConditions() {
+		cut.establishConditions()
+	}
+	
+	@Test
+	public void testCheckAndFulfillConditions() {
+		cut.checkAndFulfillConditions()
+	}
 	
 	@Before
 	public void setup() {
