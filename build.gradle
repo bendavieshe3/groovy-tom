@@ -19,3 +19,16 @@ task "create-dirs" << {
 	sourceSets*.groovy.srcDirs*.each { it.mkdirs() }
 	sourceSets*.resources.srcDirs*.each { it.mkdirs() }
 }
+
+task testUnit(type:Test) {
+	exclude '**/*Integration*'
+	
+
+	beforeTest { descriptor ->
+		logger.lifecycle("Running test: " + descriptor)
+	 }
+}
+
+task testIntegration(type:Test) {
+	include '**/*Integration*'
+}

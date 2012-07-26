@@ -17,13 +17,21 @@ class Stage {
 	
 	WebDriver session
 	
-	
 	def getProperty(String name) {
 		setCondition(name)
 		name
 	}
 	
+	/**
+	 * Set a condition on the stage. The condition is parsed for validity at this time, and if it
+	 * can not be resolved an exception is raised 
+	 * @param conditionText
+	 * @return
+	 */
+	
 	def setCondition(String conditionText) {
+		
+		throw new ConditionNotHandledException("Condition '${conditionText}' could not be handled")
 		conditions.push(new Condition(conditionText))
 	}
 	
@@ -70,5 +78,4 @@ class Stage {
 	void endTomSession() {
 		session?.quit()
 	}
-	
 }

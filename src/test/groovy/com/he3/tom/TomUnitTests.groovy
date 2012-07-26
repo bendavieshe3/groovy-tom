@@ -15,6 +15,11 @@ class TomUnitTests {
     	cut.given(mathGiven)
     }
 	
+	@Test(expected=ConditionNotHandledException)
+	public void testUnhandledGivenAssignmentCondition() {
+		cut.given(mathGivenAssignmentNotHandled)
+	}
+	
 	@Test
 	public void testWhen() {
 		cut.when(mathWhen)	
@@ -42,6 +47,10 @@ class TomUnitTests {
 	
 	private Closure mathThen = {
 		valueCIs15
+	}
+	
+	private Closure mathGivenAssignmentNotHandled = {
+		PinkAardvaaksAreGreen
 	}
 	
 }

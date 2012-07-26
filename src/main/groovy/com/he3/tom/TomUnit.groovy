@@ -4,6 +4,9 @@ import groovy.lang.Closure;
 
 class TomUnit {
 	
+	//TODO: Try @Delegate annotation around stage?
+	
+	
 	Stage testStage = new Stage()
 	
 	def given(Closure preConditions) {
@@ -29,4 +32,14 @@ class TomUnit {
 		cl.resolveStrategy = Closure.DELEGATE_FIRST
 		cl()
 	}
+}
+
+class TomException extends Exception {
+	TomException(o) { super(o) }	
+}
+
+class ConditionNotHandledException extends TomException {
+
+	ConditionNotHandledException(o) { super(o) }
+		
 }

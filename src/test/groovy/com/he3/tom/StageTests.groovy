@@ -20,12 +20,6 @@ class StageTests {
     }
 	
 	@Test
-	public void testStartStopTomSessionFirefox() {
-		cut.startTomSession(driver:'FirefoxDriver')
-		cut.endTomSession()
-	}
-	
-	@Test
 	public void testCheckConditions() {
 		cut.checkConditions()
 	}
